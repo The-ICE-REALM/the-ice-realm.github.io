@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B2233"/><stop offset="1" stop-color="#173C55"/></linearGradient>
+<linearGradient id="turf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#247552"/><stop offset="1" stop-color="#2C9663"/></linearGradient>
+<radialGradient id="glow" cx="0.5" cy="0" r="0.8"><stop offset="0" stop-color="#E9F7FC" stop-opacity="0.55"/><stop offset="1" stop-color="#E9F7FC" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="800" height="600" fill="url(#sky)"/>
+<polygon points="200,280 600,280 800,600 0,600" fill="url(#turf)"/>
+<g fill="none" stroke="#DDF1F8" stroke-opacity="0.75" stroke-width="3">
+<polygon points="240,298 560,298 720,600 80,600"/>
+<line x1="400" y1="280" x2="400" y2="600"/>
+<ellipse cx="400" cy="390" rx="95" ry="32"/>
+</g>
+<g fill="url(#glow)"><polygon points="90,40 20,600 330,600"/><polygon points="710,40 470,600 780,600"/></g>
+<g fill="#F4FBFE"><circle cx="90" cy="40" r="9"/><circle cx="710" cy="40" r="9"/></g>
+<g fill="#86C9DF"><rect x="86" y="49" width="8" height="190"/><rect x="706" y="49" width="8" height="190"/></g>
+<text x="400" y="560" text-anchor="middle" font-family="Figtree, sans-serif" font-size="20" fill="#C9E4EE">Placeholder · replace with photo-3.jpg</text>
+</svg>

@@ -1,0 +1,23 @@
+# Render Blueprint: runs the Java API on Render's free plan at https://icerealm.onrender.com.
+# The website itself is on GitHub Pages (.github/workflows/pages.yml). See docs/deploy.md.
+services:
+  - type: web
+    name: icerealm
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/cities
+    autoDeploy: true
+    envVars:
+      # The staff code for /admin. Typed into Render when the Blueprint is applied; never committed.
+      - key: ICE_REALM_ADMIN_TOKEN
+        sync: false
+      # Lets the GitHub Pages site call the API from the browser.
+      - key: APP_CORSORIGINS
+        value: https://the-ice-realm.github.io
+      # The free plan has no permanent disk, so the database lives in the container and resets on restart.
+      - key: ICE_REALM_DATA_DIR
+        value: /tmp/icerealm
+      # Keeps the JVM inside the free plan's 512 MB.
+      - key: JAVA_TOOL_OPTIONS
+        value: -XX:MaxRAMPercentage=60 -XX:+UseSerialGC

@@ -1,0 +1,30 @@
+# Start-up model for one metro venue with two pitches (one 5-a-side, one 7-a-side)
+# on about 25,000 sq ft of leased land. Rupees. See docs/cost-analysis.md.
+finance:
+  capex:
+    "[Artificial turf, 50 mm FIFA-grade (22,000 sq ft)]": 2420000
+    "[Civil work, drainage and base]": 1200000
+    "[Lease deposit (6 months)]": 900000
+    "[LED floodlights]": 850000
+    "[Fencing and netting]": 600000
+    "[Changing rooms and washrooms]": 550000
+    "[Branding and launch]": 200000
+    "[CCTV, front desk and Wi-Fi]": 160000
+    "[Goals, balls and bibs]": 120000
+  monthly-opex:
+    "[Staff (manager, 4 ground staff, 2 security)]": 170000
+    "[Land lease]": 150000
+    "[Electricity]": 65000
+    "[Marketing]": 40000
+    "[Turf maintenance]": 25000
+    "[Water and housekeeping]": 20000
+    "[Miscellaneous]": 16000
+    "[Insurance]": 8000
+    "[Internet and software]": 6000
+  turfs: 2
+  hours-per-day: 18
+  blended-hourly-rate: 1650
+  base-occupancy: 0.60
+  gst-rate: 0.18
+  projection-years: 3
+  sensitivity: [0.40, 0.50, 0.60, 0.70, 0.80]

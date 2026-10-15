@@ -1,0 +1,9 @@
+node_modules/
+frontend/dist/
+backend/target/
+backend/data/
+.DS_Store
+*.log
+frontend-next/dist/
+backend/secrets.yml
+.claude/settings.local.json

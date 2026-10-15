@@ -1,0 +1,19 @@
+spring:
+  config:
+    import: classpath:finance.yml
+  datasource:
+    url: jdbc:h2:mem:icerealm-test;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+
+app:
+  upi:
+    vpa: test@okaxis
+    payee-name: The Ice Realm
+  admin-token: test-token
+  hold-minutes: 15
+  booking-window-days: 14

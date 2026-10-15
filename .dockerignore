@@ -1,0 +1,11 @@
+# Keep build output, local data and private files out of the image.
+**/node_modules
+**/dist
+**/.DS_Store
+*.log
+backend/target
+backend/data
+backend/secrets.yml
+# The previous design isn't part of the live site.
+frontend
+docs

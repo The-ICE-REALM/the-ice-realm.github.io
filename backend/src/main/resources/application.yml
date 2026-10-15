@@ -1,0 +1,75 @@
+spring:
+  application:
+    name: ice-realm
+  config:
+    # finance.yml holds the cost-analysis inputs. secrets.yml, if present next to where the app runs,
+    # holds this machine's private settings (the staff code) and is never shared.
+    import:
+      - classpath:finance.yml
+      - optional:file:./secrets.yml
+  datasource:
+    url: jdbc:h2:file:./data/icerealm;AUTO_SERVER=TRUE
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  h2:
+    console:
+      # Off unless the "dev" profile is on: anyone who can open it can read and change the whole database.
+      enabled: false
+
+server:
+  port: 8080
+  # Cloudflare Tunnel and Railway receive the site over https and pass it on over http. Trusting their
+  # X-Forwarded-Proto header (sent only from local and private addresses) keeps the browser's own
+  # form posts from being rejected as cross-site.
+  forward-headers-strategy: native
+
+app:
+  upi:
+    # The UPI ID that receives turf payments (from the owner's FamApp QR code).
+    vpa: 9324727987@fam
+    payee-name: The Ice Realm
+  admin-token: ${ICE_REALM_ADMIN_TOKEN:frostbite}
+  hold-minutes: 15
+  booking-window-days: 14
+  # The old site (5173) and the new one (5174), when they run on their own dev servers.
+  cors-origins: http://localhost:5173,http://localhost:5174
+
+---
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/icerealm?createDatabaseIfNotExist=true
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:}
+
+---
+# Local debugging only: ./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
+spring:
+  config:
+    activate:
+      on-profile: dev
+  h2:
+    console:
+      enabled: true
+
+---
+# Cloud hosting (see docs/deploy.md). The Dockerfile turns this on.
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    # Keep the database on the host's persistent disk.
+    url: jdbc:h2:file:${ICE_REALM_DATA_DIR:/data}/icerealm
+server:
+  # Hosting platforms tell the app which port to use.
+  port: ${PORT:8080}
+app:
+  # Deliberately no default: the app refuses to start until a private staff code is set.
+  admin-token: ${ICE_REALM_ADMIN_TOKEN}
